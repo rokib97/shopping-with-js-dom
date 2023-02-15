@@ -7,7 +7,9 @@ document.getElementById("first-card").addEventListener("click", function () {
   //   serial = serial + 1;
   serial += 1;
   //   get the data from htm using id
-  const productName = document.getElementById("first-name").innerText;
+  const productName = document.getElementById("first-name").innerText; //120
+  productName = "";
+
   const productPrice = document.getElementById("first-price").innerText;
   const productQuantity = document.getElementById("first-quantity").innerText;
 
@@ -91,6 +93,9 @@ function displayData(nameOfP, priceOfP, quantityOfp, resultP) {
     <td>${priceOfP}</td>
     <td>${quantityOfp}</td>
     <td>${resultP}</td>
+    <td>
+    <button class="btn btn-sm btn-red-500">Square</button>
+    </td>
     
   `;
   container.appendChild(tr);
