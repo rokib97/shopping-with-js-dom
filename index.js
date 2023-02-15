@@ -94,6 +94,7 @@ function displayData(nameOfP, priceOfP, quantityOfp, resultP) {
     
   `;
   container.appendChild(tr);
+  document.getElementById("total-product").innerText = serial;
 }
 
 function disabledButton(id) {
