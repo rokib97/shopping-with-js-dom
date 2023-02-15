@@ -1,80 +1,74 @@
-// for first card
-
 let serial = 0;
-document.getElementById("first-card").addEventListener("click", function () {
-  //   console.log(e.target);
 
-  //   serial = serial + 1;
+// first card operation
+document.getElementById("first-card").addEventListener("click", function () {
   serial += 1;
   //   get the data from htm using id
-  const productName = document.getElementById("first-name").innerText;
-  const productPrice = document.getElementById("first-price").innerText;
-  const productQuantity = document.getElementById("first-quantity").innerText;
+  //   const productName = document.getElementById("first-name").innerText;
+  //   const productPrice = document.getElementById("first-price").innerText;
+  //   const productQuantity = document.getElementById("first-quantity").innerText;
 
-  //   multiply
-  const priceTotal = parseInt(productPrice) * parseInt(productQuantity);
-
-  //   show the data
-  displayData(productName, productPrice, productQuantity, priceTotal);
+  //  getting data using common function using getElementById method
+  const pd = getData("first-name", "first-price", "first-quantity");
+  //   multiply logic
+  const priceTotal = parseInt(pd.productPrice) * parseInt(pd.productQuantity);
+  //   show the data using function
+  displayData(pd.productName, pd.productPrice, pd.productQuantity, priceTotal);
+  //   disabled button using function
   disabledButton("first-card");
 });
 
 // using event object from browser
+// second card operation
 document.getElementById("second-card").addEventListener("click", function (e) {
-  //   console.log(e.target.parentNode.parentNode.children[0].innerText);
   serial += 1;
-
   const pd = getAllData(e);
-  //   console.log(pd);
-
+  //doing plus logic
   const sumTotal = parseInt(pd.pPrice) + parseInt(pd.pQuantity);
-
+  //   show the data using function
   displayData(pd.pName, pd.pPrice, pd.pQuantity, sumTotal);
+  //   disabled button using function
   disabledButton("second-card");
 });
 
-// card four
-document.getElementById("second-last").addEventListener("click", function (e) {
-  //   console.log(e.target.parentNode.parentNode.children[0].innerText);
-  serial += 1;
-
-  const pd = getAllData(e);
-  //   console.log(pd);
-
-  const sumTotal = parseInt(pd.pPrice) ** parseInt(pd.pQuantity);
-
-  displayData(pd.pName, pd.pPrice, pd.pQuantity, sumTotal);
-  disabledButton("second-card");
-});
-
-// third card
+// third card operation
 document.getElementById("third-card").addEventListener("click", function () {
-  //   console.log(e.target);
-
-  //   serial = serial + 1;
   serial += 1;
-  //   get the data from htm using id
-  const productName = document.getElementById("third-title").innerText;
-  const productPrice = document.getElementById("third-price").innerText;
-  const productQuantity = document.getElementById("third-quantity").innerText;
-  //   console.log(typeof productPrice, typeof productQuantity);
+  //   //   get the data from htm using id
+  //   const productName = document.getElementById("third-title").innerText;
+  //   const productPrice = document.getElementById("third-price").innerText;
+  //   const productQuantity = document.getElementById("third-quantity").innerText;
 
-  //   multiply
-  const priceTotal = parseInt(productPrice) - parseInt(productQuantity);
+  //  getting data using common function using getElementById method
+  const pd = getData("third-title", "third-price", "third-quantity");
 
-  //   show the data
-  displayData(productName, productPrice, productQuantity, priceTotal);
+  //minus logic
+  const priceTotal = parseInt(pd.productPrice) - parseInt(pd.productQuantity);
+  //   show the data using function
+  displayData(pd.productName, pd.productPrice, pd.productQuantity, priceTotal);
+  //   disabled button using function
   disabledButton("third-card");
 });
 
+// card four oepration
+document.getElementById("second-last").addEventListener("click", function (e) {
+  serial += 1;
+  const pd = getAllData(e);
+  // ** logic
+  const sumTotal = parseInt(pd.pPrice) ** parseInt(pd.pQuantity);
+  //   show the data using function
+  displayData(pd.pName, pd.pPrice, pd.pQuantity, sumTotal);
+  //   disabled button using function
+  disabledButton("second-card");
+});
+
 // last card
+//we can not use common function beacuse its an input type , we need to use dot value
 document.getElementById("last-card").addEventListener("click", function () {
   serial += 1;
   const productName = document.getElementById("last-title").innerText;
-
   const productPrice = document.getElementById("first-input").value;
   const productQuantity = document.getElementById("second-input").value;
-
   if (
     productPrice == "" ||
     productQuantity == "" ||
@@ -84,17 +78,15 @@ document.getElementById("last-card").addEventListener("click", function () {
     return alert("please enter any valid number");
   }
   const total = parseInt(productPrice) / parseInt(productQuantity);
-
+  //   show the data using function
   displayData(productName, productPrice, productQuantity, total);
+  //   disabled button using function
   disabledButton("last-card");
-
-  //   console.log(typeof productPrice, typeof productQuantity);
 });
 
 // common function to display data
 function displayData(nameOfP, priceOfP, quantityOfp, resultP) {
   const container = document.getElementById("table-container");
-
   const tr = document.createElement("tr");
   tr.innerHTML = `
     <td>${serial}</td>
@@ -131,5 +123,20 @@ function getAllData(e) {
     pQuantity: pQuantity,
   };
 
+  return pd;
+}
+
+// common function to get data using getElementById method
+function getData(id1, id2, id3) {
+  // get the data from htm using id
+  const productName = document.getElementById(id1).innerText;
+  const productPrice = document.getElementById(id2).innerText;
+  const productQuantity = document.getElementById(id3).innerText;
+
+  const pd = {
+    productName: productName,
+    productPrice: productPrice,
+    productQuantity: productQuantity,
+  };
   return pd;
 }
