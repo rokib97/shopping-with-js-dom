@@ -7,9 +7,7 @@ document.getElementById("first-card").addEventListener("click", function () {
   //   serial = serial + 1;
   serial += 1;
   //   get the data from htm using id
-  const productName = document.getElementById("first-name").innerText; //120
-  productName = "";
-
+  const productName = document.getElementById("first-name").innerText;
   const productPrice = document.getElementById("first-price").innerText;
   const productQuantity = document.getElementById("first-quantity").innerText;
 
@@ -26,15 +24,26 @@ document.getElementById("second-card").addEventListener("click", function (e) {
   //   console.log(e.target.parentNode.parentNode.children[0].innerText);
   serial += 1;
 
-  const pName = e.target.parentNode.parentNode.children[0].innerText;
-  const pPrice =
-    e.target.parentNode.parentNode.children[2].children[0].innerText;
-  const pQuantity =
-    e.target.parentNode.parentNode.children[3].children[0].innerText;
+  const pd = getAllData(e);
+  //   console.log(pd);
 
-  const sumTotal = parseInt(pPrice) + parseInt(pQuantity);
+  const sumTotal = parseInt(pd.pPrice) + parseInt(pd.pQuantity);
 
-  displayData(pName, pPrice, pQuantity, sumTotal);
+  displayData(pd.pName, pd.pPrice, pd.pQuantity, sumTotal);
+  disabledButton("second-card");
+});
+
+// card four
+document.getElementById("second-last").addEventListener("click", function (e) {
+  //   console.log(e.target.parentNode.parentNode.children[0].innerText);
+  serial += 1;
+
+  const pd = getAllData(e);
+  //   console.log(pd);
+
+  const sumTotal = parseInt(pd.pPrice) ** parseInt(pd.pQuantity);
+
+  displayData(pd.pName, pd.pPrice, pd.pQuantity, sumTotal);
   disabledButton("second-card");
 });
 
@@ -102,6 +111,25 @@ function displayData(nameOfP, priceOfP, quantityOfp, resultP) {
   document.getElementById("total-product").innerText = serial;
 }
 
+// common function to disable button
 function disabledButton(id) {
   document.getElementById(id).setAttribute("disabled", true);
+}
+
+// common function to get data using event object
+function getAllData(e) {
+  const pName = e.target.parentNode.parentNode.children[0].innerText;
+  const pPrice =
+    e.target.parentNode.parentNode.children[2].children[0].innerText;
+  const pQuantity =
+    e.target.parentNode.parentNode.children[3].children[0].innerText;
+  //   console.log(pName, pPrice, pQuantity);
+
+  const pd = {
+    pName: pName,
+    pPrice: pPrice,
+    pQuantity: pQuantity,
+  };
+
+  return pd;
 }

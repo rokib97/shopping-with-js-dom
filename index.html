@@ -52,7 +52,7 @@
     <main>
       <section class="lg:px-12 flex flex-col md:flex-row lg:flex-row">
         <div
-          class="products-cetails w-full md:w-[70%] lg:w-[70%] mt-5 grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+          class="products-cetails w-full md:w-[60%] lg:w-[60%] mt-5 grid md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           <div class="card card-compact w-full bg-base-100 shadow-xl">
             <figure>
@@ -124,7 +124,9 @@
               <p>Price: $<span>100</span></p>
               <p>Quantity: <span>3</span></p>
               <div class="card-actions justify-end">
-                <button class="btn btn-primary">Add to Cart</button>
+                <button class="btn btn-primary" id="second-last">
+                  Add to Cart
+                </button>
               </div>
             </div>
           </div>
@@ -160,7 +162,7 @@
             </div>
           </div>
         </div>
-        <div class="cart-details w-full md:w-[35%] lg:w-[25%] mx-auto">
+        <div class="cart-details w-full md:w-[40%] lg:w-[40%] mx-auto">
           <h1 class="text-3xl text-center font-bold underline mt-5">
             ToTal Products: <span id="total-product">0</span>
           </h1>
